@@ -51,3 +51,7 @@ RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # 10. Expose port 80
 EXPOSE 80
+
+# 11. Start Command (Runs every time the server boots)
+# This links the storage, runs DB migrations, and then starts Apache
+CMD bash -c "php artisan storage:link && php artisan config:cache && apache2-foreground"
