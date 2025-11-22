@@ -1,0 +1,96 @@
+    .product-detail {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .product-image-large {
+        width: 100%;
+        height: 400px;
+        /* Keep the gradient as a background, useful if image has transparency or while loading */
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* Ensures the image doesn't bleed outside the border radius */
+        position: relative;
+    }
+
+    /* NEW: Style for the actual image */
+    .product-image-large img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 'cover' fills the box, 'contain' ensures whole image is seen */
+        display: block;
+    }
+
+    /* NEW: Style for the fallback emoji */
+    .product-image-large .placeholder-icon {
+        font-size: 8rem;
+    }
+
+    .product-info h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #2c3e50;
+    }
+
+    .product-brand-large {
+        color: #7f8c8d;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+
+    .product-price-large {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #27ae60;
+        margin: 1rem 0;
+    }
+
+    .product-description {
+        margin: 1.5rem 0;
+        line-height: 1.8;
+        color: #555;
+    }
+
+    .specs-table {
+        margin: 2rem 0;
+    }
+
+    .specs-table table {
+        width: 100%;
+    }
+
+    .specs-table td {
+        padding: 0.75rem;
+        border-bottom: 1px solid #eee; /* Added light border for better readability */
+    }
+
+    .specs-table td:first-child {
+        font-weight: 600;
+        color: #2c3e50;
+        width: 40%;
+    }
+
+    .purchase-section {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .product-detail {
+            grid-template-columns: 1fr;
+        }
+        .product-image-large {
+            height: 300px; /* Slightly smaller on mobile */
+        }
+    }

@@ -1,0 +1,107 @@
+    /* Page Header */
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.8rem;
+        color: var(--dark);
+        font-weight: 700;
+    }
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        overflow: hidden; /* Keeps borders rounded */
+        border: 1px solid #f0f0f0;
+    }
+
+    /* Responsive Table Wrapper */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto; /* Allows horizontal scroll on mobile */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px; /* Ensures table doesn't squash too much */
+    }
+
+    thead {
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #eee;
+    }
+
+    th {
+        text-align: left;
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        color: #6c757d;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    td {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #f1f1f1;
+        color: var(--text);
+        vertical-align: middle;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    tbody tr:hover {
+        background-color: #fdfdfd;
+    }
+
+    /* Status Badges */
+    .status-badge {
+        display: inline-block;
+        padding: 0.35rem 0.75rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+    .status-pending { background-color: #fff3cd; color: #856404; }
+    .status-processing { background-color: #cff4fc; color: #055160; }
+    .status-shipped { background-color: #e2e3e5; color: #383d41; }
+    .status-delivered { background-color: #d1e7dd; color: #0f5132; }
+    .status-cancelled { background-color: #f8d7da; color: #842029; }
+
+    .order-id {
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .order-total {
+        font-weight: 600;
+        color: var(--dark);
+    }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+    }
+
+    .empty-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+
+    .empty-text {
+        color: #7f8c8d;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+    }

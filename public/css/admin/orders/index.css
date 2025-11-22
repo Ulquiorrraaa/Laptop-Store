@@ -1,0 +1,80 @@
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .page-header h1 {
+        color: var(--dark);
+        font-weight: 700;
+        font-size: 1.8rem;
+    }
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border: 1px solid #f0f0f0;
+        overflow: hidden;
+    }
+
+    /* Table Styles */
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+    }
+
+    th {
+        text-align: left;
+        padding: 1rem 1.5rem;
+        background: #f8f9fa;
+        color: #6c757d;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        border-bottom: 1px solid #eee;
+    }
+
+    td {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #f1f1f1;
+        vertical-align: middle;
+        color: var(--text);
+    }
+
+    tr:hover {
+        background-color: #fbfbfb;
+    }
+
+    /* Typography helpers */
+    .text-bold { font-weight: 600; color: var(--dark); }
+    .text-muted { color: #999; font-size: 0.9rem; }
+    .text-primary { color: var(--primary); font-weight: 600; }
+
+    /* Status Badges */
+    .badge {
+        padding: 0.35rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+        text-transform: capitalize;
+    }
+
+    .badge-pending { background: #fff3cd; color: #856404; }
+    .badge-processing { background: #cff4fc; color: #055160; }
+    .badge-shipped { background: #e2e3e5; color: #383d41; }
+    .badge-delivered { background: #d1e7dd; color: #0f5132; }
+    .badge-cancelled { background: #f8d7da; color: #842029; }
+
+    .btn-sm {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
