@@ -23,6 +23,16 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
+# -------------------------------------------------------------------
+# ⚠️ CRITICAL FIX FOR 404 ERRORS: Enable .htaccess Overrides
+# -------------------------------------------------------------------
+RUN echo '<Directory /var/www/html/public/>' >> /etc/apache2/apache2.conf && \
+    echo '    Options Indexes FollowSymLinks' >> /etc/apache2/apache2.conf && \
+    echo '    AllowOverride All' >> /etc/apache2/apache2.conf && \
+    echo '    Require all granted' >> /etc/apache2/apache2.conf && \
+    echo '</Directory>' >> /etc/apache2/apache2.conf
+# -------------------------------------------------------------------
+
 # 5. Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
