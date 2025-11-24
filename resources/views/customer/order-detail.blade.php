@@ -27,10 +27,10 @@
                 <div style="flex-grow: 1;">
                     <h3>{{ $item->product->name }}</h3>
                     <p style="color: #7f8c8d;">Quantity: {{ $item->quantity }}</p>
-                    <p style="font-weight: bold; color: #27ae60;">${{ number_format($item->price, 2) }} each</p>
+                    <p style="font-weight: bold; color: #27ae60;">₱{{ number_format($item->price, 2) }} each</p>
                 </div>
                 <div style="text-align: right;">
-                    <strong style="font-size: 1.25rem;">${{ number_format($item->price * $item->quantity, 2) }}</strong>
+                    <strong style="font-size: 1.25rem;">₱{{ number_format($item->price * $item->quantity, 2) }}</strong>
                 </div>
             </div>
             @endforeach
@@ -47,7 +47,7 @@
                 <h3 style="margin-bottom: 1rem;">Order Summary</h3>
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                     <span>Subtotal</span>
-                    <span>${{ number_format($order->total_amount, 2) }}</span>
+                    <span>₱{{ number_format($order->total_amount, 2) }}</span>
                 </div>
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                     <span>Shipping</span>
@@ -55,7 +55,7 @@
                 </div>
                 <div style="display: flex; justify-content: space-between; padding-top: 1rem; border-top: 2px solid #2c3e50; font-weight: bold; font-size: 1.25rem;">
                     <span>Total</span>
-                    <span>${{ number_format($order->total_amount, 2) }}</span>
+                    <span>₱{{ number_format($order->total_amount, 2) }}</span>
                 </div>
             </div>
         </div>

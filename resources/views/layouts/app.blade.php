@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'LappyToppy - Premium Electronics')</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="{{ asset('js/phospor.js') }}"></script>
 
    <link rel="stylesheet" href="{{ asset('css/layouts/app.css') }}">
 </head>

@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="product-footer">
-                            <div class="product-price">${{ number_format($product->price, 2) }}</div>
+                            <div class="product-price">₱{{ number_format($product->price, 2) }}</div>
                             
                             @if ($product->stock == 0)
                                 <div class="stock-status" style="color: #e74c3c;">

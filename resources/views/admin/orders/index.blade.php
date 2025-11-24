@@ -37,7 +37,7 @@
                         <span class="text-muted">{{ $order->created_at->format('h:i A') }}</span>
                     </td>
                     <td>
-                        <span class="text-bold">${{ number_format($order->total_amount, 2) }}</span>
+                        <span class="text-bold">₱{{ number_format($order->total_amount, 2) }}</span>
                     </td>
                     <td>
                         <span class="badge badge-{{ $order->status }}">

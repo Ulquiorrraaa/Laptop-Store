@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -40,22 +42,35 @@ class AdminController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-            'brand' => 'required|string',
-            'processor' => 'required|string',
-            'ram' => 'required|string',
-            'storage' => 'required|string',
-            'display' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            // ... other fields ...
+            'image' => 'nullable|image|max:2048', // File validation
+            'image_url' => 'nullable|url'          // New URL validation
         ]);
 
-        // Handle image upload
+        // Logic: Check File -> Then Check URL
         if ($request->hasFile('image')) {
+            // 1. Handle File Upload
             $imagePath = $request->file('image')->store('products', 'public');
             $validated['image'] = $imagePath;
+        } elseif ($request->filled('image_url')) {
+            // 2. Handle URL Download
+            try {
+                $url = $request->image_url;
+                $contents = Http::get($url)->body();
+
+                // Generate a random name
+                $name = 'products/' . Str::random(40) . '.jpg';
+
+                // Save to public disk
+                Storage::disk('public')->put($name, $contents);
+                $validated['image'] = $name;
+            } catch (\Exception $e) {
+                return back()->withErrors(['image_url' => 'Could not download image from URL.']);
+            }
         }
+
+        // Remove 'image_url' from array before creating, as it's not in DB
+        unset($validated['image_url']);
 
         Product::create($validated);
 
@@ -72,33 +87,39 @@ class AdminController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        // 1. Validate (Changed 'string' to 'image' rules)
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-            'brand' => 'required|string',
-            'processor' => 'required|string',
-            'ram' => 'required|string',
-            'storage' => 'required|string',
-            'display' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Correct validation
+            // ... other fields ...
+            'image' => 'nullable|image|max:2048',
+            'image_url' => 'nullable|url'
         ]);
 
-        // 2. Handle Image Update
+        // Handle Image (File OR URL)
+        $newImage = null;
+
         if ($request->hasFile('image')) {
-            // A. Delete the old image from storage if it exists
+            $newImage = $request->file('image')->store('products', 'public');
+        } elseif ($request->filled('image_url')) {
+            try {
+                $contents = Http::get($request->image_url)->body();
+                $name = 'products/' . Str::random(40) . '.jpg';
+                Storage::disk('public')->put($name, $contents);
+                $newImage = $name;
+            } catch (\Exception $e) {
+                return back()->withErrors(['image_url' => 'Could not download image.']);
+            }
+        }
+
+        // If we got a new image (from file or URL), delete old and update
+        if ($newImage) {
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
             }
-
-            // B. Store the new image
-            $imagePath = $request->file('image')->store('products', 'public');
-            $validated['image'] = $imagePath;
+            $validated['image'] = $newImage;
         }
 
-        // 3. Update Database
+        unset($validated['image_url']); // Clean up
+
         $product->update($validated);
 
         return redirect()->route('admin.products')->with('success', 'Product updated successfully');

@@ -24,7 +24,7 @@
     <div class="product-info">
         <div class="product-brand-large">{{ $product->brand }}</div>
         <h1>{{ $product->name }}</h1>
-        <div class="product-price-large">${{ number_format($product->price, 2) }}</div>
+        <div class="product-price-large">₱{{ number_format($product->price, 2) }}</div>
         
         <div class="product-description">
             {{ $product->description }}

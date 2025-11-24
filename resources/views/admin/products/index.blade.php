@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </td>
-                    <td style="font-weight: 600;">${{ number_format($product->price, 2) }}</td>
+                    <td style="font-weight: 600;">₱{{ number_format($product->price, 2) }}</td>
                     <td>
                         @if($product->stock > 10)
                             <span class="badge badge-instock">In Stock ({{ $product->stock }})</span>

@@ -85,12 +85,12 @@
                 {{ $item->product->brand }} | {{ $item->product->processor }}
             </div>
             <div class="item-meta">
-                Quantity: {{ $item->quantity }} × ${{ number_format($item->price, 2) }}
+                Quantity: {{ $item->quantity }} × ₱{{ number_format($item->price, 2) }}
             </div>
         </div>
         
         <div class="item-price">
-            ${{ number_format($item->price * $item->quantity, 2) }}
+            ₱{{ number_format($item->price * $item->quantity, 2) }}
         </div>
     </div>
     @endforeach
@@ -98,7 +98,7 @@
     <div class="totals-box">
         <div class="total-row">
             <span>Subtotal</span>
-            <span>${{ number_format($order->total_amount, 2) }}</span>
+            <span>₱{{ number_format($order->total_amount, 2) }}</span>
         </div>
         <div class="total-row">
             <span>Shipping</span>
@@ -106,7 +106,7 @@
         </div>
         <div class="total-row final">
             <span>Total</span>
-            <span>${{ number_format($order->total_amount, 2) }}</span>
+            <span>₱{{ number_format($order->total_amount, 2) }}</span>
         </div>
     </div>
 </div>

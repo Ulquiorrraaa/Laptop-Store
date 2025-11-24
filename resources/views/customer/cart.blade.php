@@ -27,7 +27,7 @@
                     <div>
                         <div class="item-header">
                             <div class="item-name">{{ $item['name'] }}</div>
-                            <div class="item-price">${{ number_format($item['price'] * $item['quantity'], 2) }}</div>
+                            <div class="item-price">₱{{ number_format($item['price'] * $item['quantity'], 2) }}</div>
                         </div>
                         
                         <div class="item-meta">
@@ -50,7 +50,7 @@
                             </div>
 
                             <span style="color: #ddd;">|</span>
-                            <span style="font-size: 0.85rem;">${{ number_format($item['price'], 2) }} each</span>
+                            <span style="font-size: 0.85rem;">₱{{ number_format($item['price'], 2) }} each</span>
                         </div>
                     </div>
 
@@ -77,7 +77,7 @@
             
             <div class="summary-row">
                 <span>Subtotal</span>
-                <span>${{ number_format($total, 2) }}</span>
+                <span>₱{{ number_format($total, 2) }}</span>
             </div>
             
             <div class="summary-row">
@@ -87,7 +87,7 @@
 
             <div class="summary-total">
                 <span>Total</span>
-                <span>${{ number_format($total, 2) }}</span>
+                <span>₱{{ number_format($total, 2) }}</span>
             </div>
 
             <form action="/checkout" method="POST" class="checkout-form">

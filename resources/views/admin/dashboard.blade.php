@@ -42,7 +42,7 @@
             <div class="stat-label">Revenue</div>
             <div class="stat-icon" style="color: #27ae60; background: #e9f7ef;">💰</div>
         </div>
-        <div class="stat-value">${{ number_format($totalRevenue, 2) }}</div>
+        <div class="stat-value">₱{{ number_format($totalRevenue, 2) }}</div>
         <div style="font-size: 0.85rem; color: #95a5a6; margin-top: 0.5rem;">Delivered Orders</div>
     </div>
 </div>
@@ -95,7 +95,7 @@
                     <td style="font-weight: bold; color: var(--primary);">#{{ $order->id }}</td>
                     <td>{{ $order->user->name }}</td>
                     <td>{{ $order->created_at->format('M d, Y') }}</td>
-                    <td style="font-weight: 600;">${{ number_format($order->total_amount, 2) }}</td>
+                    <td style="font-weight: 600;">₱{{ number_format($order->total_amount, 2) }}</td>
                     <td>
                         <span class="badge badge-{{ $order->status }}">
                             {{ ucfirst($order->status) }}

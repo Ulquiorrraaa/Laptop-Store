@@ -31,7 +31,7 @@
     
     <div class="stat-card">
         <div class="icon">💰</div>
-        <div class="value">${{ number_format(auth()->user()->orders()->where('status', 'delivered')->sum('total_amount'), 2) }}</div>
+        <div class="value">₱{{ number_format(auth()->user()->orders()->where('status', 'delivered')->sum('total_amount'), 2) }}</div>
         <div class="label">Total Spent</div>
     </div>
 </div>
@@ -47,7 +47,7 @@
                 <small style="color: #7f8c8d;">{{ $order->created_at->format('M d, Y') }}</small>
             </div>
             <div style="text-align: right;">
-                <div><strong>${{ number_format($order->total_amount, 2) }}</strong></div>
+                <div><strong>₱{{ number_format($order->total_amount, 2) }}</strong></div>
                 <span class="badge badge-{{ $order->status }}">{{ ucfirst($order->status) }}</span>
             </div>
             <div>
